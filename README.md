@@ -19,6 +19,3 @@ https://fireemblem.gamepress.gg/heroes
 
 Map data:
 https://feheroes.gamepedia.com/Story_Maps
-
-
-https://chrisnelson2456.github.io/COSC473FEHPocketTactitcian/
