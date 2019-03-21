@@ -1,11 +1,18 @@
 <html>
   <head>
+    <link rel="stylesheet" type="text/css" href="index.css">
     <title>Login or Register</title>
+    <script src="https://s3.amazonaws.com/stitch-sdks/js/bundles/4.3.0/stitch.js"></script>
   </head>
   
   <body>
-    <a href="./index.html"><input type="submit" value="Return"></a>
-    <h3>Login</h3>
+    <div class="return" >
+    <a href="./index.html">Return</a>
+    </div>
+    <h3 class="title2">Login</h3>
+    <div class="form">
+          <img src="images/form.png">
+          <div class="centered">
     <form method="POST" action="login(username, email)">
       Username:<input type="text" name="username" required><br />
       Password:<input type="password" name="password" required></input><br />
@@ -13,14 +20,20 @@
     </form>
     <a href="recover.html?f=pass">Forgot password?</a>
     <a href="recover.html?f=name">Forgot username?</a>
-		
+		</div>
+  </div>
     <form method="POST" action="register(username, email, password">
-      <h3>Register an Account</h3>
+      <h3 class="title2">Register an Account</h3>
+      <div class="form">
+          <img src="images/form.png">
+          <div class="centered">
       Username:<input type="text" id="username" required><br />
       Email:<input type="email" id="email" required><br />
       Password:<input type="password" id="password" required><br />
       Confirm Password:<input type="password" id="" required><br />
       <input type="submit" value="Register">
+    </div>
+  </div>
     </form>
   </body>
 </html>
