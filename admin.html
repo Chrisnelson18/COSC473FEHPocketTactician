@@ -1,9 +1,9 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html>
   <head>
+    <link rel="stylesheet" type="text/css" href="index.css">
     <title>FEH Pocket Tactician - Admin Page</title>
     <meta charset="utf-8"/>
-    <link rel="stylesheet" type="text/css" href="admin.css">
     <script type="text/javascript">    
       function genHeroStatsFields() {
         var field = document.getElementById("hRarity")
@@ -284,7 +284,7 @@
                 data += "\"neweffect\":\"" + document.getElementById("sNewEffect").value + "\",";
               }
               data += "\"type\":\"" + document.getElementById("sRefineType").value + "\",";
-              data += "\"cost\":" + document.getElementById("sRefineCost").value + "\",";
+              data += "\"cost\":" + document.getElementById("sRefineCost").value + ",";
               data += "\"sp\":" + document.getElementById("sRefineSP").value + "\",";
               data += "\"atk\":{\"stats\":[" + document.getElementById("sAtkRefineHPStat").value + ","
                 + document.getElementById("sAtkRefineAtkStat").value + ","
@@ -312,8 +312,9 @@
                   + document.getElementById("sEffRefineSpdStat").value + ","
                   + document.getElementById("sEffRefineDefStat").value + ","
                   + document.getElementById("sEffRefineResStat").value + "],";
-                data += "\"effect\":\"" + document.getElementById("sEffRefineEffect") + "\"}";
+                data += "\"effect\":\"" + document.getElementById("sEffRefineEffect").value + "\"}";
               }
+              data += "}";
             }
             data += "}";
           } else if(document.getElementById("sClass").value == "special") {
@@ -369,22 +370,28 @@
   </head>
   
   <body onload="init()">
-    <a href="./index.html"><input type="submit" value="Return"></a>
+    <div class="return" >
+    <a href="./index.html">Return</a>
+    </div>
     <input type="submit" value="Add a Hero" onclick="show('addHero')">
     <input type="submit" value="Add a Skill" onclick="show('addSkill')">
     <input type="submit" value="Add a Stage" onclick="show('addStage')">
     <div id="addHero" class="hideable">
-      <h1>Add a Hero</h1>
+      <h1 class="add">Add a Hero</h1>
       <form id="heroForm">
-        Name:<input id="hName" type="text" required>
-        Title:<input id="hTitle" type="text" required><br />
-        Color:<select id="hColor" required>
+        <div class="form">
+          <img src="images/form.png">
+          <div class="centered">
+        Name: <input id="hName" type="text" required><br>
+        Title: <input id="hTitle" type="text" required><br>
+        Color: <select id="hColor" required>
           <option value="red">Red</option>
           <option value="blue">Blue</option>
           <option value="green">Green</option>
           <option value="colorless">Colorless</option>
         </select>
-        Weapon Type:<select id="hWeaponType" required>
+        <br>
+        Weapon Type: <select id="hWeaponType" required>
           <option value="melee">Melee</option>
           <option value="bow">Bow</option>
           <option value="staff">Staff</option>
@@ -392,32 +399,46 @@
           <option value="beast">Beast</option>
           <option value="dragon">Dragon</option>
         </select>
-        Move Type:<select id="hMoveType" required>
+        <br>
+        Move Type: <select id="hMoveType" required>
           <option value="infantry">Infantry</option>
           <option value="cavalry">Cavalry</option>
           <option value="armor">Armor</option>
           <option value="flier">Flier</option>
         </select>
-        Lowest Available Rarity:<select id="hRarity" onchange="genHeroStatsFields()" required>
+        <br>
+        Lowest Available Rarity: <select id="hRarity" onchange="genHeroStatsFields()" required>
           <option value=5 selected>5 Stars Only</option>
           <option value=4>4 Stars</option>
           <option value=3>3 Stars</option>
           <option value=2>2 Stars</option>
           <option value=1>1 Star</option>
         </select>
-        
-        <h2>Asset locations</h2>
-        Portrait:<input id="hPortrait" type="text" required>
-        Main:<input id="hMain" type="text" required>
-        
-        <h2>Stats</h2>
+        </div>
+        </div>
+        <h2 class="banner">Asset locations</h2>
+        <div class="form">
+          <img src="images/form.png">
+          <div class="centered">
+        Portrait: <input id="hPortrait" type="text" required><br>
+        Main: <input id="hMain" type="text" required>
+        </div>
+      </div>
+        <h2 class="banner">Stats</h2>
+        <div class="form">
+          <img src="images/form.png">
+          <div class="centered">
         <input type="checkbox" id="hIVs" onclick="genHeroStatsFields()">Has IVs?
         <table>
           <tr><th>Rank</th><th>HP</th><th>Atk</th><th>Spd</th><th>Def</th><th>Res</th></tr>
           <tbody id="hStatsBody"></tbody>
         </table>
-        
-        <h2>Skills</h2>
+        </div>
+      </div>
+        <h2 class="banner">Skills</h2>
+        <div class="form">
+          <img src="images/form.png">
+          <div class="centered">
         <table id="heroSkillsTable">
           <tr><th>Name</th><th>Rarity</th><th>Type</th></tr>
           <tr><td><input id="hs1Name" type="text" required></td>
@@ -439,6 +460,8 @@
             <td><input type="button" value="Remove" onclick="hsTableRemoveSkill(this)"></tr>
         </table>
         <input type="button" value="Add Another Skill" onclick="hsTableAddNewSkill()">
+      </div>
+    </div>
         <!---
         Name:<input id="hsName" type="text" required>
         Rarity:<select id="hsRarity" required>
@@ -455,7 +478,10 @@
     </div>
 <!--------------------------------------------------------------------------------------------->
     <div id="addSkill" class="hideable">
-      <h1>Add a Skill</h1>
+      <h1 class="add">Add a Skill</h1>
+      <div class="form">
+          <img src="images/form.png">
+          <div class="centered">
       <form id="skillForm">
         Name:<input type="text" id="sName" required>
         Class:<select id="sClass" onchange="showSkillSubForms()">
@@ -491,7 +517,13 @@
             <option value="bow">Bow</option>
             <option value="staff">Staff</option>
           </select>
-          <h2>Stats</h2>
+        </div>
+      </div>
+    </div>
+          <h2 class="banner">Stats</h2>
+          <div class="form">
+          <img src="images/form.png">
+          <div class="centered">
           HP:<input type="number" id="sHP" value="0">
           Atk:<input type="number" id="sAtk" value="0">
           Spd:<input type="number" id="sSpd" value="0">
@@ -499,7 +531,13 @@
           Res:<input type="number" id="sRes" value="0"><br />
           <br /><input type="checkbox" id="sRefineable" onchange="showSkillSubForms()">Refineable?
           <div id="sIsRefineable">
-            <h2>Refines</h2>
+          </div>
+        </div>
+      </div>
+            <h2 class="banner">Refines</h2>
+            <div class="form">
+          <img src="images/form.png">
+          <div class="centered">
             Refine type:<select id="sRefineType">
               <option value="Stones">Stones</option>
               <option value="Dew">Dew</option>
@@ -510,7 +548,12 @@
             <div id="sRefineNewEffect">
               New Effect:<input type="text" id="sNewEffect">
             </div>
-            <h3>Refine Stats</h3>
+          </div>
+        </div>
+            <h3 class="banner">Refine Stats</h3>
+            <div class="form">
+          <img src="images/form.png">
+          <div class="centered">
             <input type="checkbox" id="sHasEffectRefine" onchange="sRefineStatsTableEffect()" />Has Effect Refine?
             <table id="sRefineStatsTable">
               <tr><th>Refine Type</th><th>HP</th><th>Atk</th><th>Spd</th><th>Def</th><th>Res</th></tr>
@@ -552,12 +595,19 @@
         <div id="sIsSpecial">
           Cooldown:<input type="number" id="sCooldown" value="0">
         </div>
+
         <br /><input type="submit" value="Add Skill" onclick="sendSkillData()">
       </form>
     </div>
 <!------------------------------------------------------------------------------------------>
     <div id="addStage" class="hideable">
-      <h1> under construction :(</h1>
+      <h1 class="add">Add a Stage</h1>
+      <div class="form">
+          <img src="images/form.png">
+          <div class="centered">
+      <p>under construction :(</p>
+    </div>
+  </div>
     </div>
   </body>
 </html>
