@@ -483,8 +483,8 @@
           <img src="images/form.png">
           <div class="centered">
       <form id="skillForm">
-        Name:<input type="text" id="sName" required>
-        Class:<select id="sClass" onchange="showSkillSubForms()">
+        Name: <input type="text" id="sName" required><br>
+        Class: <select id="sClass" onchange="showSkillSubForms()">
           <option value="weapon">Weapon</option>
           <option value="assist">Assist</option>
           <option value="special">Special</option>
@@ -492,23 +492,23 @@
           <option value="b">B</option>
           <option value="c">C</option>
           <option value="seal">Seal</option>
-        </select>
-        Effect:<input type="text" id="sEffect">
-        Asset location:<input type="text" id="sAsset" required>
-        SP Cost:<input type="number" id="sSP" value="0" required>
+        </select><br>
+        Effect: <input type="text" id="sEffect"><br>
+        Asset location: <input type="text" id="sAsset" required><br>
+        SP Cost: <input type="number" id="sSP" value="0" required>
         <input type="checkbox" id="sCanInherit">Is Inheritable?
         <div id="sHasRange">
-          Range:<input type="number" id="sRange" value="0">
+          Range: <input type="number" id="sRange" value="0">
         </div>
         <div id="sIsWeapon">
-          Color:<select id="sColor" onchange="showSkillSubForms()">
+          Color: <select id="sColor" onchange="showSkillSubForms()">
             <option value="red">Red</option>
             <option value="blue">Blue</option>
             <option value="green">Green</option>
             <option value="colorless">Colorless</option>
             <option value="multicolor">Multicolor</option>
           </select>
-          Type:<select id="sType">
+          Type: <select id="sType">
             <option value="melee">Melee</option>
             <option value="beast">Beast</option>
             <option value="dragon">Dragon</option>
@@ -524,12 +524,12 @@
           <div class="form">
           <img src="images/form.png">
           <div class="centered">
-          HP:<input type="number" id="sHP" value="0">
-          Atk:<input type="number" id="sAtk" value="0">
-          Spd:<input type="number" id="sSpd" value="0">
-          Def:<input type="number" id="sDef" value="0">
-          Res:<input type="number" id="sRes" value="0"><br />
-          <br /><input type="checkbox" id="sRefineable" onchange="showSkillSubForms()">Refineable?
+          HP: <input type="number" id="sHP" value="0"><br>
+          Atk: <input type="number" id="sAtk" value="0"><br>
+          Spd: <input type="number" id="sSpd" value="0"><br>
+          Def: <input type="number" id="sDef" value="0"><br>
+          Res: <input type="number" id="sRes" value="0"><br>
+          <input type="checkbox" id="sRefineable" onchange="showSkillSubForms()">Refineable?
           <div id="sIsRefineable">
           </div>
         </div>
@@ -538,15 +538,15 @@
             <div class="form">
           <img src="images/form.png">
           <div class="centered">
-            Refine type:<select id="sRefineType">
+            Refine type: <select id="sRefineType">
               <option value="Stones">Stones</option>
               <option value="Dew">Dew</option>
-            </select>
-            Refine Material Cost:<input type="number" id="sRefineCost">
-            SP Cost:<input type="number" id="sRefineSP">
+            </select><br>
+            Refine Material Cost: <input type="number" id="sRefineCost"><br>
+            SP Cost: <input type="number" id="sRefineSP">
             <br /><input type="checkbox" id="sHasNewEffect" onchange="showSkillSubForms()">Has New Effect?
             <div id="sRefineNewEffect">
-              New Effect:<input type="text" id="sNewEffect">
+              New Effect: <input type="text" id="sNewEffect">
             </div>
           </div>
         </div>
@@ -554,7 +554,7 @@
             <div class="form">
           <img src="images/form.png">
           <div class="centered">
-            <input type="checkbox" id="sHasEffectRefine" onchange="sRefineStatsTableEffect()" />Has Effect Refine?
+            <input type="checkbox" id="sHasEffectRefine" onchange="sRefineStatsTableEffect()" /> Has Effect Refine?
             <table id="sRefineStatsTable">
               <tr><th>Refine Type</th><th>HP</th><th>Atk</th><th>Spd</th><th>Def</th><th>Res</th></tr>
               <tr>
