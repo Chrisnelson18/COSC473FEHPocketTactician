@@ -1,0 +1,173 @@
+﻿<!DOCTYPE html>
+
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml">
+<head>
+  <meta charset="utf-8" />
+  <title>Manage Your Heroes</title>
+  <script src="https://s3.amazonaws.com/stitch-sdks/js/bundles/4.3.2/stitch.js"></script>
+  <script src="manageheroes.js"></script>
+  <script src="scripts.js"></script>
+  <link rel="stylesheet" type="text/css" href="index.css" />
+  <!-- <script>
+      window.onload = checkLoggedIn;
+      
+      function checkLoggedIn() {
+        if (!Stitch.defaultAppClient.auth.user) {//user is not logged in
+          document.getElementById("indexLogin").className = "shown";
+          document.getElementById("navbarLogin").className = "shown";
+          document.getElementById("admin").className = "hidden";
+          document.getElementById("manageHeroes").className = "hidden";
+          document.getElementById("navbarLogout").className = "hidden";
+          document.getElementById("tacticsRoom").className = "hidden";
+          document.getElementById("navbarAdminLoggedIn").className = "hidden";
+          document.getElementById("navbarLoggedInTactics").className = "hidden";
+          document.getElementById("navbarLoggedInManage").className = "hidden";
+
+
+        } else {//user is logged in
+          if (!checkUserIsAdmin()) {//user is logged in, but not an admin
+            document.getElementById("admin").className = "hidden";
+            //document.getElementById("navbarAdminLoggedIn").className = "hidden";
+          } else {
+            document.getElementById("admin").className = "shown items";
+            //document.getElementById("navbarAdminLoggedIn").className = "shown, navbar";
+
+          }
+          document.getElementById("manageHeroes").className = "shown items";
+          document.getElementById("navbarLogout").className = "shown";
+          document.getElementById("tacticsRoom").className = "shown items";
+          document.getElementById("indexLogin").className = "hidden";
+          document.getElementById("navbarLogin").className = "hidden";
+          document.getElementById("floatingLogin").className = "hidden";
+          document.getElementById("navbarLogoutAnchor").innerHTML = "Log out of " + Stitch.defaultAppClient.auth.user.profile.data.email;
+          document.getElementById("navbarAdminLoggedIn").className = "shown, navbar";
+          document.getElementById("navbarLoggedInTactics").className = "shown, navbar";
+          document.getElementById("navbarLoggedInManage").className = "shown, navbar";
+
+          //console.log(Stitch.defaultAppClient.auth.user);
+        }
+        
+        document.getElementById("navbarLogout").addEventListener("click", logout);
+        document.getElementById("navbarLogin").addEventListener("click", toggleLogin);
+        //document.getElementById("floatingLogin").addEventListener("submit", login(flEmail.value, flPassword.value));
+      }
+    </script> -->
+</head>
+<body>
+  <div id="navbarAndLogin">
+      <ul class="navbarUL">
+        <li class="navbar"><a href="./index.html">FEHPT</a></li>       
+        <li class="navbar" id="navbarLoggedInManage"><a class="active" href="./manageheroes.html">Manage Heroes</a></li>
+        <li class="navbar" id="navbarLoggedInTactics"><a href="./tacticsroom.html">Tactics Room</a></li>
+        <li class="navbar"><a href="./heroes.html">View Heroes</a></li>
+        <li class="navbar"><a href="./skills.html">View Skills</a></li>
+        <li class="navbar" id="navbarAdminLoggedIn"><a href="./admin.html">Admin</a></li>
+
+        <li class="navbar" id="navbarLogin"><a href="#Login">Login</a></li>
+        <li class="navbar" id="navbarLogout"><a href="#Logout" id="navbarLogoutAnchor"></a></li>
+      </ul>
+      <form id="floatingLogin" class="hidden" onsubmit="login(flEmail.value, flPassword.value)">
+        <label for="flEmail">Email:</label>
+        <input type="text" id="flEmail"></input><br />
+        <label for="flPassword">Password:</label>
+        <input type="password" id="flPassword"></input><br />
+        <a href="login.html#register">Register</a>
+        <a href="login.html#forgotAndRegistration">Forgot Password</a>
+        <input type="submit" value="Login"></input>
+      </form>
+    </div>
+  <div id="notLoggedIn">
+    <p>Please <a href="login.html">login</a> to view this page.</p>
+  </div>
+
+  <div id="loggedIn">
+    <h1>Your Heroes</h1>
+    <ul id="yourHeroesList"></ul>
+
+    <div id="editHero" class="hidden">
+      <h1>Edit Hero</h1>
+      <div class="cropped">
+        <img id="yourHeroImage">
+      </div>
+      <h2 id="yourHeroNameAndTitle"></h2>
+      <img id="yourHeroRarity" />
+      <select id="changeHeroRarity"></select>
+      <h3>Stats</h3>
+      <table id="yourHeroStatsTable">
+        <tr>
+          <th></th>
+          <th>HP</th>
+          <th>Atk</th>
+          <th>Spd</th>
+          <th>Def</th>
+          <th>Res</th>
+        </tr>
+        <tr>
+          <td></td>
+          <td id="yourHeroHP"></td>
+          <td id="yourHeroAtk"></td>
+          <td id="yourHeroSpd"></td>
+          <td id="yourHeroDef"></td>
+          <td id="yourHeroRes"></td>
+        </tr>
+      </table>
+      <div id="yourHeroIVs">
+        <input type="checkbox" id="neut" /> Hero has neutral IVs<br />
+        Boon:<select id="boon">
+          <option value="hp">HP</option>
+          <option value="atk">Attack</option>
+          <option value="spd">Speed</option>
+          <option value="def">Defense</option>
+          <option value="res">Resistance</option>
+        </select>
+        Bane:<select id="bane">
+          <option value="hp">HP</option>
+          <option value="atk">Attack</option>
+          <option value="spd">Speed</option>
+          <option value="def">Defense</option>
+          <option value="res">Resistance</option>
+        </select>
+      </div>
+      <h3>Skills</h3>
+      <table id="yourHeroSkillsTable">
+        <tr>
+          <td>Weapon:</td>
+          <td><select id="equippedWeapon"></select></td>
+        </tr>
+        <tr>
+          <td>Assist:</td>
+          <td><select id="equippedAssist"></select></td>
+        </tr>
+        <tr>
+          <td>Special:</td>
+          <td><select id="equippedSpecial"></select></td>
+        </tr>
+        <tr>
+          <td>A Skill:</td>
+          <td><select id="equippedA"></select></td>
+        </tr>
+        <tr>
+          <td>B Skill:</td>
+          <td><select id="equippedB"></select></td>
+        </tr>
+        <tr>
+          <td>C Skill:</td>
+          <td><select id="equippedC"></select></td>
+        </tr>
+        <tr>
+          <td>Seal:</td>
+          <td><select id="equippedSeal"></select></td>
+        </tr>
+      </table>
+      <input type="submit" value="Save Changes" id="saveChanges"/>
+      <input type="submit" value="Delete Hero" id="deleteHero"/>
+    </div>
+
+    <h1>Add New Heroes</h1>
+    <select id="newHeroes">
+
+    </select>
+    <input type="button" value="Add New Hero" onclick="addYourHero()"/>
+  </div>
+</body>
+</html>

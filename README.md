@@ -20,4 +20,8 @@ https://fireemblem.gamepress.gg/heroes
 Map data:
 https://feheroes.gamepedia.com/Story_Maps
 
-view CSS Here: https://chrisnelson2456.github.io/COSC473FEHPocketTactician/
+Good View Hero layout to emulate?
+https://feh-stuff.github.io/unit-builder/
+
+MongoDB Stitch Documentation:
+https://docs.mongodb.com/stitch-sdks/js/4/index.html
