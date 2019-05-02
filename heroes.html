@@ -1,28 +1,70 @@
-<html>
+﻿<html>
 <head>
-  <link rel="stylesheet" type="text/css" href="index.css">
   <meta http-equiv="content-type" content="text/html; charset=utf-8" />
   <title>View Heroes</title>
+  <link rel="stylesheet" type="text/css" href="index.css">
+  <script src="https://s3.amazonaws.com/stitch-sdks/js/bundles/4.3.2/stitch.js"></script>
   <script type="text/javascript" src="scripts.js"></script>
-  <style>
-    td {
-      border: 1px solid black;
-    }
-  </style>
+  <script src="heroes.js"></script>
 </head>
 
-  <!--TODO: move data fields out of scripts.js into here-->
-  <body onload="buildHeroesList();">
-    <div class="return" >
-    <a href="./index.html">Return</a>
-    </div>
-    <h1 class="title">Select a Hero</h1>
-    <div id="select">
+<body>
+  <div id="navbarAndLogin">
+      <ul class="navbarUL">
+        <li class="navbar"><a class="active" href="./index.html">FEHPT</a></li>       
+        <li class="navbar" id="navbarLoggedInManage"><a href="./manageheroes.html">Manage Heroes</a></li>
+        <li class="navbar" id="navbarLoggedInTactics"><a href="./tacticsroom.html">Tactics Room</a></li>
+        <li class="navbar"><a href="./heroes.html">View Heroes</a></li>
+        <li class="navbar"><a href="./skills.html">View Skills</a></li>
+        <li class="navbar" id="navbarAdminLoggedIn"><a href="./admin.html">Admin</a></li>
 
+        <li class="navbar" id="navbarLogin"><a href="#Login">Login</a></li>
+        <li class="navbar" id="navbarLogout"><a href="#Logout" id="navbarLogoutAnchor"></a></li>
+      </ul>
+      <form id="floatingLogin" class="hidden" onsubmit="login(flEmail.value, flPassword.value)">
+        <label for="flEmail">Email:</label>
+        <input type="text" id="flEmail"></input><br />
+        <label for="flPassword">Password:</label>
+        <input type="password" id="flPassword"></input><br />
+        <a href="login.html#register">Register</a>
+        <a href="login.html#forgotAndRegistration">Forgot Password</a>
+        <input type="submit" value="Login"></input>
+      </form>
     </div>
+  <h1 class="title">Select a Hero</h1>
+  <div id="select">
+    <select id="heroesList">
+      <option>Select a hero</option>
+    
+    </select>
+  </div>
 
-    <div id="hero">
-
+  <div id="hero">
+    <div class="cropped">
+      <img id="heroImg">
     </div>
-  </body>
+    <h2 id="heroNameAndTitle"></h2>
+    <img id="heroWeapon"><img id="heroMoveType">
+    <h3>Stats</h3>
+    <table id="heroStatsTable">
+      <tr>
+        <th>Rarity/Lvl</th>
+        <th>HP</th>
+        <th>Atk</th>
+        <th>Spd</th>
+        <th>Def</th>
+        <th>Res</th>
+      </tr>
+      
+    </table>
+    <h3>Skills</h3>
+    <table id="heroSkillsTable">
+      <tr>
+        <th>Skill Name</th>
+        <th>Rarity</th>
+        <th>Skill Type</th>
+      </tr>
+    </table>
+  </div>
+</body>
 </html>
